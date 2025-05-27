@@ -1,0 +1,58 @@
+{
+  "system": {
+    "n_electrons_up": 1,
+    "n_electrons_down": 1,
+    "atom_coords": [[-1, 0.0, 0.0], [1, 0.0, 0.0]],
+    "atom_types": [1, 1],
+    "nuclear_charges": [1.0, 1.0],
+    "d_model": 128,
+    "n_layers": 4,
+    "n_heads": 8,
+    "n_determinants": 8,
+    "dropout": 0.1,
+    "use_layernorm": true,
+    "use_jastrow": true,
+    "jastrow_init": 0.01,
+    "envelope_type": "isotropic",
+    "use_cross_attention": true
+  },
+"mcmc": {
+    "step_size": 0.05,
+    "n_steps": 15,
+    "init_width": 1.0,
+    "adapt_step_size": true,
+    "step_size_min": 0.001,
+    "step_size_max": 0.2,
+    "target_accept_rate": 0.5,
+    "accept_rate_window": 10
+},
+  "hamiltonian": {
+    "method": "log",
+    "grad_clip": 30.0
+  },
+  "loss": {
+    "type": "vmc",
+    "params": {
+      "clip_local_energy": 8.0,
+      "remove_outliers": true,
+      "outlier_width": 12.0
+    }
+  },
+  "optimizer": {
+    "lr": 0.0003,
+    "beta1": 0.9,
+    "beta2": 0.999,
+    "eps": 1e-8,
+    "weight_decay": 1e-6,
+    "grad_clip": 0.5
+  },
+  "training": {
+    "n_iterations": 2500,
+    "batch_size": 4096,
+    "burn_in_steps": 20,
+    "save_frequency": 200,
+    "plot_frequency": 25
+  },
+  "checkpoint_dir": "checkpoints/lapnet_h2_test",
+  "plots_dir": "plots/lapnet_h2_test"
+} 
